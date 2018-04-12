@@ -1,3 +1,5 @@
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
   entry: [
     './src/index.js'
@@ -7,7 +9,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       }
     ]
   },
@@ -19,7 +21,12 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
-  devServer: {
-    contentBase: './dist'
-  }
+  plugins: [
+    new UglifyJsPlugin({
+      ecma: 5,
+      compress: {
+        dead_code: true,
+      },
+    })
+  ]
 };
