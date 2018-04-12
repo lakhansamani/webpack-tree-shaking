@@ -22,7 +22,10 @@
   },
   "babel": {
     "presets": [
-      "env",
+      ["env", {
+        "loose": true,
+        "modules": false
+      }],
       "react",
       "stage-2"
     ]
